@@ -1,7 +1,7 @@
-import { DEBUG } from 'utils/settings'
-import router from 'router'
-import store from 'store'
-import apolloProvider from 'utils/apollo-client'
+import { DEBUG } from './utils/settings'
+import router from './router'
+import store from './store'
+import apolloProvider from './utils/apollo-client'
 import Vue from 'vue'
 import App from './App.vue'
 

@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import gql from 'graphql-tag'
 import * as _ from 'underscore'
-import router from 'router'
-import { client } from 'utils/apollo-client'
+import router from '../router'
+import { client } from '../utils/apollo-client'
+
+Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {

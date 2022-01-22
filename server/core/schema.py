@@ -38,7 +38,7 @@ class AuthMutation(graphene.ObjectType):
 
 class Query(MeQuery, graphene.ObjectType):
     chats = DjangoFilterConnectionField(ChatType, filterset_class=ChatFilter)
-    chat = graphene.Field(ChatType, id=graphene.ID)
+    chat = graphene.Field(ChatType, id=graphene.ID())
     messages = DjangoFilterConnectionField(
         MessageType,
         filterset_class=MessageFilter, id=graphene.ID()
@@ -48,7 +48,7 @@ class Query(MeQuery, graphene.ObjectType):
     def resolve_chats(cls, info, **kwargs):
         user = info.context.user
         return Chat.objects.prefetch_related("messages", "participants").filter(particopants=user)
-    
+
     @staticmethod
     def resolve_chat(cls, info, id, **kwargs):
         user = info.context.user
@@ -57,7 +57,8 @@ class Query(MeQuery, graphene.ObjectType):
     @staticmethod
     def resolve_messages(cls, info, id, **kwargs):
         user = info.context.user
-        chat = Chat.objects.prefetch_related("messages", "participants").get(participants=user, id=id)
+        chat = Chat.objects.prefetch_related(
+            "messages", "participants").get(participants=user, id=id)
         return chat.messages.all()
 
 
@@ -106,19 +107,12 @@ class SendMessage(graphene.Mutation):
     class Arguments:
         message = graphene.String(required=True)
         chat_id = graphene.Int(required=True)
-        
-
-class SendMessage(graphene.Mutation):
-    message = graphene.Field(MessageType)
-
-    class Arguments:
-        message = graphene.String(required=True)
-        chat_id = graphene.Int(required=True)
 
     @classmethod
     def mutate(cls, _, info, message, chat_id):
         user = info.context.user
-        chat = Chat.objects.prefetch_related("participants").get(participants=user, id=chat_id)
+        chat = Chat.objects.prefetch_related(
+            "participants").get(participants=user, id=chat_id)
         message = Message.objects.create(
             sender=user,
             text=message,
@@ -155,7 +149,8 @@ class Subscription(graphene.ObjectType):
     on_new_message = OnNewMessage.Field()
 
 
-schema = graphene.Schema(query=Query, mutation=Mutations, subscription=Subscription)
+schema = graphene.Schema(
+    query=Query, mutation=Mutations, subscription=Subscription)
 
 
 class MyGraphqlWsConsumer(channels_graphql_ws.GraphqlWsConsumer):

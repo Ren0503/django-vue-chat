@@ -82,7 +82,7 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
-ASGI_APPLICATION = 'backend.router.application'
+ASGI_APPLICATION = 'server.router.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
