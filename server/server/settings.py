@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 # graphene
 GRAPHENE = {
-    "SCHEMA": "chat.schema.schema",
+    "SCHEMA": "core.schema.schema",
     "SUBSCRIPTION_PATH": "/ws/graphql",
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
@@ -76,6 +76,8 @@ GRAPHQL_JWT = {
         "graphql_auth.mutations.VerifySecondaryEmail",
     ],
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CHANNEL_LAYERS = {
     "default": {

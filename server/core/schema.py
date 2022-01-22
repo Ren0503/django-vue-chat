@@ -1,14 +1,11 @@
-from atexit import register
 import channels
 import channels_graphql_ws
-from django.db import utils
 import graphene
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 from graphene_django.filter import DjangoFilterConnectionField
 from graphql_auth import mutations
 from graphql_auth.schema import MeQuery
-from graphql_jwt import Revoke
 
 from .models import Chat, Message
 from .serializer import ChatType, ChatFilter, MessageType, MessageFilter
@@ -47,12 +44,12 @@ class Query(MeQuery, graphene.ObjectType):
     @staticmethod
     def resolve_chats(cls, info, **kwargs):
         user = info.context.user
-        return Chat.objects.prefetch_related("messages", "participants").filter(particopants=user)
+        return Chat.objects.prefetch_related("messages", "participants").filter(participants=user)
 
     @staticmethod
     def resolve_chat(cls, info, id, **kwargs):
         user = info.context.user
-        return Chat.objects.prefetch_related("participants").get(particopants=user, id=id)
+        return Chat.objects.prefetch_related("participants").get(participants=user, id=id)
 
     @staticmethod
     def resolve_messages(cls, info, id, **kwargs):
