@@ -94,8 +94,8 @@
 
 
 <script>
-import { mapGetters } from "vuex";
-import SocialAuth from "./SocialAuth";
+import { mapGetters } from "vuex"
+import SocialAuth from "./SocialAuth"
 export default {
   name: "LoginForms",
   components: {
@@ -106,13 +106,13 @@ export default {
   },
   methods: {
     handleLogin(e) {
-      e.preventDefault();
+      e.preventDefault()
       let data = {
         email: e.target.elements.email.value,
         password: e.target.elements.password.value,
-      };
-      this.$emit("login-handler", data);
+      }
+      this.$emit("login-handler", data)
     },
   },
-};
+}
 </script>

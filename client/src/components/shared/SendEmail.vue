@@ -64,14 +64,14 @@
 </template>
 <script>
 export default {
-  name: "ForgotPassword",
+  name: "SendEmail",
   methods: {
     handleSubmit(e) {
-      e.preventDefault();
+      e.preventDefault()
       let data = {
         email: e.target.elements.email.value,
-      };
-      this.$emit("handle-submit", data);
+      }
+      this.$emit("handle-submit", data)
     },
   },
   props: {
@@ -81,5 +81,5 @@ export default {
     sub_heading: String,
     success_message: String,
   },
-};
+}
 </script>

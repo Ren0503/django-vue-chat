@@ -40,5 +40,5 @@ export default {
     authGoogle() {},
     authTweeter() {},
   },
-};
+}
 </script>

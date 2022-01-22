@@ -73,7 +73,7 @@
                 />
                 <label class="form-check-label" for="auth-terms-condition-check"
                   >I accept
-                  <a href="javascript: void(0);" class="text-dark"
+                  <a href="javascript: void(0)" class="text-dark"
                     >Terms and Conditions</a
                   ></label
                 >
@@ -111,18 +111,18 @@ export default {
   name: "NewPasswordComp",
   methods: {
     handleSet(e) {
-      e.preventDefault();
+      e.preventDefault()
       let data = {
         newPassword1: e.target.elements.password1.value,
         newPassword2: e.target.elements.password2.value,
-      };
-      this.$emit("handle-setpassword", data);
+      }
+      this.$emit("handle-setpassword", data)
     },
   },
   props: {
     errors: Object,
     success: Boolean,
   },
-};
+}
 </script>
 

@@ -119,7 +119,7 @@
                 />
                 <label class="form-check-label" for="auth-terms-condition-check"
                   >I accept
-                  <a href="javascript: void(0);" class="text-dark"
+                  <a href="javascript: void(0)" class="text-dark"
                     >Terms and Conditions</a
                   ></label
                 >
@@ -154,8 +154,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import SocialAuth from "./SocialAuth";
+import { mapGetters } from "vuex"
+import SocialAuth from "./SocialAuth"
 
 export default {
   name: "RegisterForm",
@@ -167,16 +167,16 @@ export default {
   },
   methods: {
     handleRegister(e) {
-      e.preventDefault();
+      e.preventDefault()
       let data = {
         username: e.target.elements.username.value,
         email: e.target.elements.email.value,
         password1: e.target.elements.password1.value,
         password2: e.target.elements.password2.value,
-      };
-      this.$emit("handle-register", data);
+      }
+      this.$emit("handle-register", data)
     },
   },
-};
+}
 </script>
 
