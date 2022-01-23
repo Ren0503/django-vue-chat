@@ -56,6 +56,7 @@ GRAPHENE = {
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
 }
+
 SITE_ID = 1
 
 GRAPHQL_JWT = {
@@ -84,6 +85,7 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
 ASGI_APPLICATION = 'server.router.application'
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -94,6 +96,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
